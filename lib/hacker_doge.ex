@@ -1,9 +1,6 @@
 defmodule HackerDoge do
   use Application.Behaviour
 
-  # See http://elixir-lang.org/docs/stable/Application.Behaviour.html
-  # for more information on OTP Applications
-  # I nicked a lot of stuff from https://github.com/yortz/twitterproxy/blob/master/lib/twitterproxy.ex
 
   @doc """
   The application callback used to start the application.
@@ -12,7 +9,6 @@ defmodule HackerDoge do
   defrecord CONFIGURATION, consumer_key: nil, consumer_secret: nil, token: nil, secret: nil, url: nil, screen_name: nil, count: nil
 
   def start(_type, _args) do
-    # HackerDoge.Supervisor.start_link
     :random.seed(:erlang.now) # wow, yea, we need this
     HackerDoge.Twitter.get_tweets |> HackerDoge.Twitter.send_tweets
     {:ok, self}

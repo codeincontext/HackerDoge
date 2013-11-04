@@ -1,5 +1,7 @@
 defmodule HackerDoge.Twitter do
-
+  @doc """
+  Get recent tweets from the account we're *cough* using.
+  """
   def get_tweets do
     configuration = HackerDoge.configure("configuration.yml")
     consumer = create_consumer(configuration.consumer_key, configuration.consumer_secret)
@@ -11,6 +13,9 @@ defmodule HackerDoge.Twitter do
     Enum.map decoded_data, &Dict.get(&1, "text")
   end
 
+  @doc """
+  Send a list of strings as doge tweets.
+  """
   def send_tweets(tweets) do
     configuration = HackerDoge.configure("configuration.yml")
     consumer = create_consumer(configuration.consumer_key, configuration.consumer_secret)
@@ -53,11 +58,5 @@ defmodule HackerDoge.Twitter do
   defp bin_to_list(binary) do
     :binary.bin_to_list(binary)
   end
-# 
-#   defp prettified_json(data) do
-#     {ok, prettified_json } = JSEX.prettify :erlang.list_to_binary data
-#     prettified_json
-#   end
-
 
 end
